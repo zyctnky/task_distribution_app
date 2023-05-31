@@ -99,6 +99,7 @@
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\DeveloperController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManagerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -114,6 +115,14 @@
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="Views\Home\_Navbar.cshtml" />
     <Content Include="Views\Developer\Index.cshtml" />
+    <Content Include="Views\Manager\Index.cshtml" />
+    <Content Include="Views\Manager\TaskDetails.cshtml" />
+    <Content Include="Views\Manager\TaskEdit.cshtml" />
+    <Content Include="Views\Manager\TaskDelete.cshtml" />
+    <Content Include="Views\Manager\DeveloperList.cshtml" />
+    <Content Include="Views\Manager\DeveloperDetails.cshtml" />
+    <Content Include="Views\Manager\DeveloperEdit.cshtml" />
+    <Content Include="Views\Manager\DeveloperDelete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
