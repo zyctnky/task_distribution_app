@@ -13,5 +13,12 @@ namespace task_distribution_app.Controllers
         {
             return View();
         }
+
+        [Route("logout")]
+        public ActionResult Logout()
+        {
+            Session.RemoveAll();
+            return RedirectToAction("Login");
+        }
     }
 }

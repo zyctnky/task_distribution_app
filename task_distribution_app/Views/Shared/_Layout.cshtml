@@ -8,10 +8,11 @@
 </head>
 <body>
     <div class="container body-content">
+        @Html.Action("_Navbar", "Home")
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - <a href="https://ziyacetinkaya.com" target="_blank">ziyacetinkaya.com</a></p>
+            <p>&copy; @DateTime.Now.Year - <a href="https://ziyacetinkaya.com" class="text-decoration-none text-dark" target="_blank">ziyacetinkaya.com</a></p>
         </footer>
     </div>
 

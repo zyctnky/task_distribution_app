@@ -12,5 +12,10 @@ namespace task_distribution_app.Controllers
         {
             return View();
         }
+
+        public ActionResult _Navbar()
+        {
+            return View();
+        }
     }
 }
