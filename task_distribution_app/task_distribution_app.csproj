@@ -96,6 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AnalystController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\DeveloperController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -121,8 +122,11 @@
     <Content Include="Views\Manager\TaskDelete.cshtml" />
     <Content Include="Views\Manager\DeveloperList.cshtml" />
     <Content Include="Views\Manager\DeveloperDetails.cshtml" />
-    <Content Include="Views\Manager\DeveloperEdit.cshtml" />
-    <Content Include="Views\Manager\DeveloperDelete.cshtml" />
+    <Content Include="Views\Analyst\Index.cshtml" />
+    <Content Include="Views\Analyst\TaskCreate.cshtml" />
+    <Content Include="Views\Analyst\TaskDetails.cshtml" />
+    <Content Include="Views\Analyst\TaskEdit.cshtml" />
+    <Content Include="Views\Analyst\TaskDelete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

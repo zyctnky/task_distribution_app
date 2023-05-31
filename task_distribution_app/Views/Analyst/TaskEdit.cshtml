@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Task Düzenle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body text-bg-light">
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-between">
+                        <h5>Task Düzenle</h5>
+                        <div>
+                            <a href="/analyst/task/1/delete" class="btn btn-danger btn-sm me-1"><i class="bi bi-trash3"></i></a>
+                            <a href="/analyst" class="btn btn-dark btn-sm"><i class="bi bi-house"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-lg-4 col-12 mb-2">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Başlık</label>
+                            <input type="text" class="form-control" id="title">
+                        </div>
+                        <div class="mb-3">
+                            <label for="difficulty" class="form-label">Zorluk Seviyesi</label>
+                            <select class="form-select" id="difficulty" aria-label="Zorluk Seviyesi">
+                                <option selected>Zorluk Seviyesi Seç</option>
+                                <option value="3">LEVEL 1</option>
+                                <option value="3">LEVEL 2</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Açıklama</label>
+                            <textarea class="form-control" id="description" rows="5"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary w-100">Kaydet</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
