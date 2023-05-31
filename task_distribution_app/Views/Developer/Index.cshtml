@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Developer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header text-bg-dark">
+                Tasklarım
+            </div>
+            <div class="card-body text-bg-light">
+                <div class="row">
+                    <div class="col-xl-3 col-md-4 col-12 mb-2">
+                        <div class="card border-0 ">
+                            <div class="card-header text-bg-danger">
+                                Task Title
+                            </div>
+                            <div class="card-body p-2">
+                                <p class="h6">Difficulty Level</p>
+                                <p>Description</p>
+                                <p>Created User / Date</p>
+                                <div class="input-group input-group-sm">
+                                    <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                                        <option selected>Durum Seç</option>
+                                        <option value="3">Üzerinde Çalışılıyor</option>
+                                        <option value="3">Tamamlandı</option>
+                                    </select>
+                                    <button class="btn btn-outline-secondary" type="button">Kaydet</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

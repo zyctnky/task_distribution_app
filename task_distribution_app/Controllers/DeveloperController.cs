@@ -6,19 +6,11 @@ using System.Web.Mvc;
 
 namespace task_distribution_app.Controllers
 {
-    public class HomeController : Controller
+    [RoutePrefix("developer")]
+    public class DeveloperController : Controller
     {
+        [Route("")]
         public ActionResult Index()
-        {
-            return View();
-        }
-
-        public ActionResult _Navbar()
-        {
-            return View();
-        }
-
-        public ActionResult _PageHeader()
         {
             return View();
         }
