@@ -30,7 +30,7 @@ namespace task_distribution_app.Controllers
         [Route("task/{id}/delete")]
         public ActionResult TaskDelete(int id)
         {
-            return View();
+            return View(); 
         }
 
         [Route("developer")]
