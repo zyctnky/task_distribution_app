@@ -15,6 +15,8 @@ namespace task_distribution_app.Controllers
 
         public ActionResult _Navbar()
         {
+            ViewBag.fullname = Session["USER_FULLNAME"];
+            ViewBag.rol_name = Session["USER_ROL_NAME"] == null ? "" : Session["USER_ROL_NAME"];
             return View();
         }
 
