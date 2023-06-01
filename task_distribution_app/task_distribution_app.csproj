@@ -102,7 +102,13 @@
     <Content Include="Global.asax" />
     <Content Include="Models\DTO\TaskDistributionContext.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TaskDistributionContext.edmx</DependentUpon>
       <LastGenOutput>TaskDistributionContext.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DTO\TaskDistributionContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TaskDistributionContext.edmx</DependentUpon>
+      <LastGenOutput>TaskDistributionContext.cs</LastGenOutput>
     </Content>
     <Content Include="Web.config" />
   </ItemGroup>
@@ -116,15 +122,35 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DTO\sysdiagrams.cs">
+      <DependentUpon>TaskDistributionContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DTO\TaskDistributionContext.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TaskDistributionContext.Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DTO\TaskDistributionContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TaskDistributionContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DTO\TaskDistributionContext.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TaskDistributionContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTO\TDIFFICULTYLEVEL.cs">
+      <DependentUpon>TaskDistributionContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTO\TROLE.cs">
+      <DependentUpon>TaskDistributionContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTO\TTASK.cs">
+      <DependentUpon>TaskDistributionContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTO\TUSER.cs">
+      <DependentUpon>TaskDistributionContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -134,9 +160,9 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TaskDistributionContext.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Models\DTO\TaskDistributionContext.edmx.diagram">
+    <Content Include="Models\DTO\TaskDistributionContext.edmx.diagram">
       <DependentUpon>TaskDistributionContext.edmx</DependentUpon>
-    </None>
+    </Content>
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

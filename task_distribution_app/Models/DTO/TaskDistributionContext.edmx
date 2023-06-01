@@ -131,7 +131,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TaskDistributionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="sysdiagram">
+        <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
@@ -148,7 +148,7 @@
           <Property Name="DIFFICULTYLEVEL_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DIFFICULTYLEVEL_SCORE" Type="Int32" />
           <Property Name="DIFFICULTYLEVEL_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="TTASKs" Relationship="Self.FK_TTASK_TDIFFICULTYLEVEL" FromRole="TDIFFICULTYLEVEL" ToRole="TTASK" />
+          <NavigationProperty Name="TTASK" Relationship="Self.FK_TTASK_TDIFFICULTYLEVEL" FromRole="TDIFFICULTYLEVEL" ToRole="TTASK" />
         </EntityType>
         <EntityType Name="TROLE">
           <Key>
@@ -156,7 +156,7 @@
           </Key>
           <Property Name="ROLE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ROLE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="TUSERs" Relationship="Self.FK_TUSER_TROLE" FromRole="TROLE" ToRole="TUSER" />
+          <NavigationProperty Name="TUSER" Relationship="Self.FK_TUSER_TROLE" FromRole="TROLE" ToRole="TUSER" />
         </EntityType>
         <EntityType Name="TTASK">
           <Key>
@@ -186,8 +186,8 @@
           <Property Name="USER_PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="USER_ROL_ID" Type="Int32" />
           <NavigationProperty Name="TROLE" Relationship="Self.FK_TUSER_TROLE" FromRole="TUSER" ToRole="TROLE" />
-          <NavigationProperty Name="TTASKs" Relationship="Self.FK_TTASK_TUSER" FromRole="TUSER" ToRole="TTASK" />
-          <NavigationProperty Name="TTASKs1" Relationship="Self.FK_TTASK_TUSER1" FromRole="TUSER" ToRole="TTASK" />
+          <NavigationProperty Name="TTASK" Relationship="Self.FK_TTASK_TUSER" FromRole="TUSER" ToRole="TTASK" />
+          <NavigationProperty Name="TTASK1" Relationship="Self.FK_TTASK_TUSER1" FromRole="TUSER" ToRole="TTASK" />
         </EntityType>
         <Association Name="FK_TTASK_TDIFFICULTYLEVEL">
           <End Role="TDIFFICULTYLEVEL" Type="Self.TDIFFICULTYLEVEL" Multiplicity="0..1" />
@@ -238,26 +238,26 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="TaskDistributionEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="TDIFFICULTYLEVELs" EntityType="Self.TDIFFICULTYLEVEL" />
-          <EntitySet Name="TROLEs" EntityType="Self.TROLE" />
-          <EntitySet Name="TTASKs" EntityType="Self.TTASK" />
-          <EntitySet Name="TUSERs" EntityType="Self.TUSER" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TDIFFICULTYLEVEL" EntityType="Self.TDIFFICULTYLEVEL" />
+          <EntitySet Name="TROLE" EntityType="Self.TROLE" />
+          <EntitySet Name="TTASK" EntityType="Self.TTASK" />
+          <EntitySet Name="TUSER" EntityType="Self.TUSER" />
           <AssociationSet Name="FK_TTASK_TDIFFICULTYLEVEL" Association="Self.FK_TTASK_TDIFFICULTYLEVEL">
-            <End Role="TDIFFICULTYLEVEL" EntitySet="TDIFFICULTYLEVELs" />
-            <End Role="TTASK" EntitySet="TTASKs" />
+            <End Role="TDIFFICULTYLEVEL" EntitySet="TDIFFICULTYLEVEL" />
+            <End Role="TTASK" EntitySet="TTASK" />
           </AssociationSet>
           <AssociationSet Name="FK_TUSER_TROLE" Association="Self.FK_TUSER_TROLE">
-            <End Role="TROLE" EntitySet="TROLEs" />
-            <End Role="TUSER" EntitySet="TUSERs" />
+            <End Role="TROLE" EntitySet="TROLE" />
+            <End Role="TUSER" EntitySet="TUSER" />
           </AssociationSet>
           <AssociationSet Name="FK_TTASK_TUSER" Association="Self.FK_TTASK_TUSER">
-            <End Role="TUSER" EntitySet="TUSERs" />
-            <End Role="TTASK" EntitySet="TTASKs" />
+            <End Role="TUSER" EntitySet="TUSER" />
+            <End Role="TTASK" EntitySet="TTASK" />
           </AssociationSet>
           <AssociationSet Name="FK_TTASK_TUSER1" Association="Self.FK_TTASK_TUSER1">
-            <End Role="TUSER" EntitySet="TUSERs" />
-            <End Role="TTASK" EntitySet="TTASKs" />
+            <End Role="TUSER" EntitySet="TUSER" />
+            <End Role="TTASK" EntitySet="TTASK" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -267,7 +267,7 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="TaskDistributionModelStoreContainer" CdmEntityContainer="TaskDistributionEntities">
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="TaskDistributionModel.sysdiagram">
+            <EntityTypeMapping TypeName="TaskDistributionModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -277,7 +277,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TDIFFICULTYLEVELs">
+          <EntitySetMapping Name="TDIFFICULTYLEVEL">
             <EntityTypeMapping TypeName="TaskDistributionModel.TDIFFICULTYLEVEL">
               <MappingFragment StoreEntitySet="TDIFFICULTYLEVEL">
                 <ScalarProperty Name="DIFFICULTYLEVEL_ID" ColumnName="DIFFICULTYLEVEL_ID" />
@@ -286,7 +286,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TROLEs">
+          <EntitySetMapping Name="TROLE">
             <EntityTypeMapping TypeName="TaskDistributionModel.TROLE">
               <MappingFragment StoreEntitySet="TROLE">
                 <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
@@ -294,7 +294,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TTASKs">
+          <EntitySetMapping Name="TTASK">
             <EntityTypeMapping TypeName="TaskDistributionModel.TTASK">
               <MappingFragment StoreEntitySet="TTASK">
                 <ScalarProperty Name="TASK_ID" ColumnName="TASK_ID" />
@@ -310,7 +310,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TUSERs">
+          <EntitySetMapping Name="TUSER">
             <EntityTypeMapping TypeName="TaskDistributionModel.TUSER">
               <MappingFragment StoreEntitySet="TUSER">
                 <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
@@ -335,7 +335,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

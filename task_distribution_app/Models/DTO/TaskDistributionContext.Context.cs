@@ -25,10 +25,10 @@ namespace task_distribution_app.Models.DTO
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<TDIFFICULTYLEVEL> TDIFFICULTYLEVELs { get; set; }
-        public virtual DbSet<TROLE> TROLEs { get; set; }
-        public virtual DbSet<TTASK> TTASKs { get; set; }
-        public virtual DbSet<TUSER> TUSERs { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<TDIFFICULTYLEVEL> TDIFFICULTYLEVEL { get; set; }
+        public virtual DbSet<TROLE> TROLE { get; set; }
+        public virtual DbSet<TTASK> TTASK { get; set; }
+        public virtual DbSet<TUSER> TUSER { get; set; }
     }
 }
