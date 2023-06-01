@@ -153,6 +153,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\SessionCheck.cs" />
     <Compile Include="Models\DTO\sysdiagrams.cs">
       <DependentUpon>TaskDistributionContext.tt</DependentUpon>
     </Compile>

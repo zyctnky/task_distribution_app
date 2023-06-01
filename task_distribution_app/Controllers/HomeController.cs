@@ -3,14 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using static task_distribution_app.Models.Enums;
 
 namespace task_distribution_app.Controllers
 {
     public class HomeController : Controller
     {
+        [Route("~/")]
         public ActionResult Index()
         {
-            return View();
+            int role_id = Session["USER_ROL_ID"] == null ? 0 : (int)Session["USER_ROL_ID"];
+
+            if (role_id == (int)ROLES.YONETICI)
+                return RedirectToAction("Index", "Manager");
+
+            if (role_id == (int)ROLES.ANALIST)
+                return RedirectToAction("Index", "Analyst");
+
+            if (role_id == (int)ROLES.DEVELOPER)
+                return RedirectToAction("Index", "Developer");
+
+            return RedirectToAction("Login", "Auth");
         }
 
         public ActionResult _Navbar()

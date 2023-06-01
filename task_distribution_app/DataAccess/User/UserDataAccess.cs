@@ -29,8 +29,8 @@ namespace task_distribution_app.DataAccess.User
                     id = user.USER_ID,
                     username = user.USER_USERNAME,
                     fullname = user.USER_FULLNAME,
-                    rol_id = user.USER_ROL_ID,
-                    rol_name = role != null ? role.ROLE_NAME : ""
+                    role_id = user.USER_ROL_ID,
+                    role_name = role != null ? role.ROLE_NAME : ""
                 };
             }
         }
