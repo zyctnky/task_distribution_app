@@ -8,7 +8,7 @@ namespace task_distribution_app.DataAccess.Task
 {
     public interface ITaskDataAccess
     {
-        List<TaskVM> GetList();
+        List<TaskVM> GetList(int assigned_user_id);
         TaskVM GetById(int task_id);
         bool Insert(TaskVM task);
         bool Update(TaskVM task);

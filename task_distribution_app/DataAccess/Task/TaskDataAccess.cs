@@ -14,13 +14,16 @@ namespace task_distribution_app.DataAccess.Task
         IGenericRepository<TDIFFICULTYLEVEL> _difficultyLevelRepo;
         TaskDistributionEntities _context;
 
-        public List<TaskVM> GetList()
+        public List<TaskVM> GetList(int assigned_user_id = 0)
         {
             using (_context = new TaskDistributionEntities())
             {
                 _taskRepo = new GenericRepository<TTASK>(_context);
 
-                List<TTASK> taskList = _taskRepo.Select().ToList();
+                List<TTASK> taskList = assigned_user_id <= 0
+                    ? _taskRepo.Select().ToList()
+                    : _taskRepo.Select(t => t.TASK_ASSIGNED_USER_ID == assigned_user_id).ToList();
+
                 List<TaskVM> taskVmList = new List<TaskVM>();
                 foreach (TTASK task in taskList)
                 {
@@ -117,7 +120,8 @@ namespace task_distribution_app.DataAccess.Task
                 TASK_CREATED_AT = DateTime.Now,
                 TASK_CREATED_BY = taskVM.createdBy,
                 TASK_DIFFICULTYLEVEL_ID = taskVM.difficultylevelId,
-                TASK_IS_COMPLETE = false,
+                TASK_IS_COMPLETE = taskVM.isComplete,
+                TASK_COMPLETE_DATE = taskVM.completeDate,
                 TASK_ASSIGNED_DATE = DateTime.Now,
                 TASK_ASSIGNED_USER_ID = taskVM.assignedUserId,
             };

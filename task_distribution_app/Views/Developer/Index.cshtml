@@ -1,4 +1,4 @@
-﻿
+﻿@model List<task_distribution_app.Models.ViewModels.TaskVM>
 @{
     ViewBag.Title = "Developer Paneli";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,32 +11,74 @@
                 <h5>Tasklarım</h5>
                 <hr />
                 <div class="row row-cols-2 row-cols-md-4">
-                    <div class="col">
-                        <div class="card border-1 border-dark-subtle h-100">
-                            <div class="card-header text-bg-dark">
-                                <i class="bi bi-hourglass-split me-2"></i>Task Title
-                            </div>
-                            <div class="card-body p-2">
-                                <p class="h6">Difficulty Level</p>
-                                <p>Description</p>
-                                <p>Created User / Date</p>
-                                <button class="btn btn-outline-primary btn-sm w-100" type="button">TASK TAMAMLANDI</button>
+                    @foreach (task_distribution_app.Models.ViewModels.TaskVM task in Model)
+                    {
+                        <div class="col">
+                            <div class="card border-1 border-dark-subtle h-100">
+                                @if (task.isComplete == true)
+                                {
+                                    <div class="card-header text-bg-success">
+                                        <i class="bi bi-check-lg me-2"></i>@task.title
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="card-header text-bg-danger">
+                                        <i class="bi bi-hourglass-split me-2"></i>@task.title
+                                    </div>
+                                }
+                                <div class="card-body p-0">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item d-flex justify-content-between align-items-start p-2">
+                                            <div>
+                                                <div class="fw-bold">Zorluk Seviyesi</div>
+                                                @task.difficultylevelName
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-start p-2">
+                                            <div>
+                                                <div class="fw-bold">Başlık</div>
+                                                @task.title
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-start p-2">
+                                            <div>
+                                                <div class="fw-bold">Açıklama</div>
+                                                @task.description
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-start p-2">
+                                            <div>
+                                                <div class="fw-bold">Oluşturan Kullanıcı</div>
+                                                @task.createdUserFullname / @(((DateTime)task.createdAt).ToString("dd.MM.yyyy"))
+                                            </div>
+                                        </li>
+
+                                        @if (task.isComplete == true)
+                                        {
+                                            <li class="list-group-item d-flex justify-content-between align-items-start p-2 rounded-bottom">
+                                                <div>
+                                                    <div class="fw-bold">Tamamlanma Tarihi</div>
+                                                    @(((DateTime)task.completeDate).ToString("dd.MM.yyyy"))
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>
+                                    @if (task.isComplete == false)
+                                    {
+                                        <div class="p-3">
+                                            @using (Html.BeginForm("TaskCompletedForm", "Developer", FormMethod.Post))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                @Html.HiddenFor(m => task.id)
+                                                <button class="btn btn-outline-primary btn-sm w-100" type="submit">TASK TAMAMLANDI</button>
+                                            }
+                                        </div>
+                                    }
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="card border-success-subtle h-100">
-                            <div class="card-header text-bg-success">
-                                <i class="bi bi-check-lg me-2"></i>Task Title
-                            </div>
-                            <div class="card-body p-2">
-                                <p class="h6">Difficulty Level</p>
-                                <p>Description</p>
-                                <p>Created User / Date</p>
-                                <p>Completed Date</p>
-                            </div>
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
         </div>

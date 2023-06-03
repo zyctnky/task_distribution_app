@@ -23,7 +23,7 @@ namespace task_distribution_app.Controllers
         [SessionCheck(role = ROLES.ANALIST)]
         public ActionResult Index()
         {
-            List<TaskVM> taskList = _taskDA.GetList().OrderByDescending(t => t.createdAt).ToList();
+            List<TaskVM> taskList = _taskDA.GetList(0).OrderByDescending(t => t.createdAt).ToList();
             return View(taskList);
         }
 
@@ -91,13 +91,10 @@ namespace task_distribution_app.Controllers
                 else
                 {
                     TaskVM checkTask = _taskDA.GetById(task.id);
-                    task.assignedUserId = checkTask.assignedUserId;
-                    task.assignedDate = checkTask.assignedDate;
-                    task.createdAt = checkTask.createdAt;
-                    task.createdBy = checkTask.createdBy;
-                    task.isComplete = checkTask.isComplete;
-                    task.completeDate = checkTask.completeDate;
-                    _taskDA.Update(task);
+                    checkTask.title = task.title;
+                    checkTask.description = task.description;
+                    checkTask.difficultylevelId = task.difficultylevelId;
+                    _taskDA.Update(checkTask);
                     return RedirectToAction("Index");
                 }
             }
