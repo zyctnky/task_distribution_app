@@ -11,8 +11,8 @@ namespace task_distribution_app.Repository
     {
         T FindById(object entityId);
         IEnumerable<T> Select(Expression<Func<T, bool>> filter = null);
-        void Insert(T entity);
-        void Update(T entity);
+        T Insert(T entity);
+        T Update(T entity);
         T FindByLambda(Expression<Func<T, bool>> filter = null);
         void Delete(object entityId);
         void Delete(T entity);

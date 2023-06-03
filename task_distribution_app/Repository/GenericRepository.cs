@@ -49,9 +49,9 @@ namespace task_distribution_app.Repository
                 return null;
         }
 
-        public void Insert(T entity)
+        public T Insert(T entity)
         {
-            _dbSet.Add(entity);
+            return _dbSet.Add(entity);
         }
 
         public IEnumerable<T> Select(Expression<Func<T, bool>> filter = null)
@@ -62,10 +62,11 @@ namespace task_distribution_app.Repository
                 return _dbSet;
         }
 
-        public void Update(T entity)
+        public T Update(T entity)
         {
-            _dbSet.Attach(entity);
+            T updatedEntity = _dbSet.Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;
+            return updatedEntity;
         }
 
         public void Dispose(bool disposing)

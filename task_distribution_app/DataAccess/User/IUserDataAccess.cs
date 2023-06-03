@@ -9,6 +9,6 @@ namespace task_distribution_app.DataAccess.User
 {
     public interface IUserDataAccess
     {
-        USER Login(string username, string password);
+        UserVM Login(string username, string password);
     }
 }

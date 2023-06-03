@@ -13,7 +13,7 @@ namespace task_distribution_app.DataAccess.User
         IGenericRepository<TUSER> _userRepo;
         IGenericRepository<TROLE> _roleRepo;
         TaskDistributionEntities _context;
-        public USER Login(string username, string password)
+        public UserVM Login(string username, string password)
         {
             using (_context = new TaskDistributionEntities())
             {
@@ -24,13 +24,13 @@ namespace task_distribution_app.DataAccess.User
                     return null;
 
                 TROLE role = _roleRepo.FindById(user.USER_ROLE_ID);
-                return new USER()
+                return new UserVM()
                 {
                     id = user.USER_ID,
                     username = user.USER_USERNAME,
                     fullname = user.USER_FULLNAME,
-                    role_id = user.USER_ROLE_ID,
-                    role_name = role != null ? role.ROLE_NAME : ""
+                    roleId = user.USER_ROLE_ID,
+                    roleName = role != null ? role.ROLE_NAME : ""
                 };
             }
         }

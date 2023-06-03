@@ -20,19 +20,19 @@ namespace task_distribution_app.Controllers
         [Route("login")]
         public ActionResult Login()
         {
-            return View(new USER());
+            return View(new UserVM());
         }
 
         [HttpPost]
-        public ActionResult LoginForm(USER user)
+        public ActionResult LoginForm(UserVM user)
         {
-            USER checkUser = _userDA.Login(user.username, user.password);
+            UserVM checkUser = _userDA.Login(user.username, user.password);
             if (checkUser != null)
             {
                 Session.Add("USER_ID", checkUser.id);
                 Session.Add("USER_FULLNAME", checkUser.fullname);
-                Session.Add("USER_ROL_ID", checkUser.role_id);
-                Session.Add("USER_ROL_NAME", checkUser.role_name);
+                Session.Add("USER_ROL_ID", checkUser.roleId);
+                Session.Add("USER_ROL_NAME", checkUser.roleName);
 
                 return RedirectToAction("Index", "Home");
             }

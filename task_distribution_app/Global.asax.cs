@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using task_distribution_app.DataAccess.Task;
 using task_distribution_app.DataAccess.User;
 
 namespace task_distribution_app
@@ -28,6 +29,7 @@ namespace task_distribution_app
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
 
             builder.RegisterType<UserDataAccess>().As<IUserDataAccess>();
+            builder.RegisterType<TaskDataAccess>().As<ITaskDataAccess>();
 
             IContainer container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
