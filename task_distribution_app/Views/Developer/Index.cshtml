@@ -49,7 +49,7 @@
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between align-items-start p-2">
                                             <div>
-                                                <div class="fw-bold">Oluşturan Kullanıcı</div>
+                                                <div class="fw-bold">Analist</div>
                                                 @task.createdUserFullname / @(((DateTime)task.createdAt).ToString("dd.MM.yyyy"))
                                             </div>
                                         </li>
@@ -71,7 +71,7 @@
                                             {
                                                 @Html.AntiForgeryToken()
                                                 @Html.HiddenFor(m => task.id)
-                                                <button class="btn btn-outline-primary btn-sm w-100" type="submit">TASK TAMAMLANDI</button>
+                                                <button class="btn btn-outline-primary w-100" type="submit">TASK TAMAMLANDI</button>
                                             }
                                         </div>
                                     }

@@ -11,5 +11,7 @@ namespace task_distribution_app.DataAccess.User
     {
         UserVM Login(string username, string password);
         List<UserVM> GetList(int role_id);
+        List<DeveloperVM> GetDeveloperList();
+        DeveloperVM GetDeveloperById(int developerId);
     }
 }

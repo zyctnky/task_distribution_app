@@ -41,7 +41,7 @@
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-start p-2">
                                 <div>
-                                    <div class="fw-bold">Oluşturan Kullanıcı / Oluşturma Tarihi</div>
+                                    <div class="fw-bold">Analist / Oluşturma Tarihi</div>
                                     @Model.createdUserFullname / @(((DateTime)Model.createdAt).ToString("dd.MM.yyyy"))
                                 </div>
                             </li>
@@ -59,11 +59,11 @@
                             {
                                 <li class="list-group-item p-2">
                                     <div>
-                                        <div class="fw-bold">Atanan Kullanıcı</div>
+                                        <div class="fw-bold">Developer</div>
                                         @using (Html.BeginForm("TaskEditForm", "Manager", FormMethod.Post))
                                         {
                                             @Html.AntiForgeryToken()
-                                            <div class="input-group input-group-sm">
+                                            <div class="input-group">
                                                 @Html.HiddenFor(m => Model.id)
                                                 @Html.DropDownList("assignedUserId", null, htmlAttributes: new { @class = "form-select", required = "required" })
                                                 <button class="btn btn-primary" type="submit">Kaydet</button>

@@ -95,14 +95,16 @@ namespace task_distribution_app.Controllers
         [SessionCheck(role = ROLES.YONETICI)]
         public ActionResult DeveloperList()
         {
-            return View();
+            List<DeveloperVM> developerList = _userDA.GetDeveloperList();
+            return View(developerList);
         }
 
         [Route("developer/{id}/details")]
         [SessionCheck(role = ROLES.YONETICI)]
         public ActionResult DeveloperDetails(int id)
         {
-            return View();
+            DeveloperVM developer = _userDA.GetDeveloperById(id);
+            return View(developer);
         }
 
         private void PopulateDeveloperDropdown(object selected = null)
