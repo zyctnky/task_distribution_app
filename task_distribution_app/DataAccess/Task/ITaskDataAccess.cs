@@ -13,5 +13,6 @@ namespace task_distribution_app.DataAccess.Task
         TaskVM Insert(TaskVM task);
         TaskVM Update(TaskVM task);
         bool Delete(TaskVM task);
+        List<DifficultyLevelVM> GetDifficultyLevelList();
     }
 }

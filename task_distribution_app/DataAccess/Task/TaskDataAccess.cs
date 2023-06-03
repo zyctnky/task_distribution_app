@@ -11,6 +11,7 @@ namespace task_distribution_app.DataAccess.Task
     public class TaskDataAccess : ITaskDataAccess
     {
         IGenericRepository<TTASK> _taskRepo;
+        IGenericRepository<TDIFFICULTYLEVEL> _difficultyLevelRepo;
         TaskDistributionEntities _context;
 
         public List<TaskVM> GetList()
@@ -79,6 +80,28 @@ namespace task_distribution_app.DataAccess.Task
             }
         }
 
+        public List<DifficultyLevelVM> GetDifficultyLevelList()
+        {
+            using (_context = new TaskDistributionEntities())
+            {
+                _difficultyLevelRepo = new GenericRepository<TDIFFICULTYLEVEL>(_context);
+
+                List<TDIFFICULTYLEVEL> difficultyLevelList = _difficultyLevelRepo.Select().ToList();
+                List<DifficultyLevelVM> difficultyLevelVmList = new List<DifficultyLevelVM>();
+                foreach (TDIFFICULTYLEVEL difficultyLevel in difficultyLevelList)
+                {
+                    difficultyLevelVmList.Add(new DifficultyLevelVM()
+                    {
+                        id = difficultyLevel.DIFFICULTYLEVEL_ID,
+                        name = difficultyLevel.DIFFICULTYLEVEL_NAME,
+                        score = difficultyLevel.DIFFICULTYLEVEL_SCORE
+                    });
+                }
+
+                return difficultyLevelVmList;
+            }
+        }
+
         private TTASK Map_TaskVMToTask(TaskVM taskVM)
         {
             return new TTASK()
@@ -114,5 +137,6 @@ namespace task_distribution_app.DataAccess.Task
                 title = task.TASK_TITLE
             };
         }
+
     }
 }
