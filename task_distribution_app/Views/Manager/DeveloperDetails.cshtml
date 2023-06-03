@@ -29,7 +29,7 @@
                                         <th>Zorluk Seviyesi</th>
                                         <th>Analist</th>
                                         <th>Oluşturma Tarihi</th>
-                                        <th>İşlemler</th>
+                                        <th class="text-end">İşlemler</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -38,7 +38,7 @@
                                         <tr>
                                             <td>@task.title</td>
                                             <td>
-                                                <button type="button" class="btn btn-dark disabled btn-sm rounded-0">@(task.difficultylevelName)</button>
+                                                <button type="button" class="btn btn-secondary disabled btn-sm">@(task.difficultylevelName)</button>
                                             </td>
                                             <td>@task.createdUserFullname</td>
                                             <td>@(((DateTime)task.createdAt).ToString("dd.MM.yyyy"))</td>

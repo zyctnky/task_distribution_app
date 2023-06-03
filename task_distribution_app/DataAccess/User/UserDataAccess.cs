@@ -69,12 +69,12 @@ namespace task_distribution_app.DataAccess.User
             using (_context = new TaskDistributionEntities())
             {
                 _userRepo = new GenericRepository<TUSER>(_context);
-                List<TUSER> userlist = _userRepo.Select(u => u.USER_ROLE_ID == (int)ROLES.DEVELOPER).ToList();
+                List<TUSER> userlist = _userRepo.Select(u => u.USER_ROLE_ID == (int)ROLES.DEVELOPER).OrderBy(u => u.USER_FULLNAME).ToList();
 
                 List<DeveloperVM> developerList = new List<DeveloperVM>();
                 foreach (TUSER user in userlist)
                 {
-                    List<TaskVM> taskList = _taskDA.GetList(user.USER_ID);
+                    List<TaskVM> taskList = _taskDA.GetList(user.USER_ID).Take(5).ToList();
                     developerList.Add(new DeveloperVM()
                     {
                         user = Map_UserToUserVM(user),
