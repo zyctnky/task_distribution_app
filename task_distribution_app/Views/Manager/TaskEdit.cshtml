@@ -1,4 +1,4 @@
-﻿
+﻿@model task_distribution_app.Models.ViewModels.TaskVM
 @{
     ViewBag.Title = "Task Düzenle";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -19,29 +19,63 @@
                 </div>
                 <hr />
                 <div class="row">
-                    <div class="col-12 mb-2">
-                        <h3>Zorluk Seviyesi</h3>
-                        <h4>Task Başlığı</h4>
-                        <p>Task Açıklama</p>
-                        <p>Oluşturan Kullanıcı / Oluşturma Tarihi</p>
-                        <div class="row">
-                            <div class="col-lg-3 col-12">
-                                <div class="input-group input-group-sm">
-                                    <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
-                                        <option selected>Developer Seç</option>
-                                        <option value="3">Ziya</option>
-                                        <option value="3">Ali</option>
-                                    </select>
-                                    <button class="btn btn-primary" type="button">Kaydet</button>
+                    <div class="col-md-6 col-12 mb-2">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-start p-2">
+                                <div>
+                                    <div class="fw-bold">Zorluk Seviyesi</div>
+                                    @Model.difficultylevelName
                                 </div>
-                            </div>
-                        </div>
-                        <strong>veya</strong>
-                        <p>Tamamlanma Tarihi</p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start p-2">
+                                <div>
+                                    <div class="fw-bold">Başlık</div>
+                                    @Model.title
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start p-2">
+                                <div>
+                                    <div class="fw-bold">Açıklama</div>
+                                    @Model.description
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start p-2">
+                                <div>
+                                    <div class="fw-bold">Oluşturan Kullanıcı / Oluşturma Tarihi</div>
+                                    @Model.createdUserFullname / @(((DateTime)Model.createdAt).ToString("dd.MM.yyyy"))
+                                </div>
+                            </li>
+                            @if (Model.isComplete == true)
+                            {
+
+                                <li class="list-group-item d-flex justify-content-between align-items-start p-2">
+                                    <div>
+                                        <div class="fw-bold">Tamamlanma</div>
+                                        @(Model.isComplete == true ? "Tamamlandı" : "Tamamlanmadı")  @(Model.completeDate != null ? ((DateTime)Model.completeDate).ToString("dd.MM.yyyy") : "")
+                                    </div>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="list-group-item p-2">
+                                    <div>
+                                        <div class="fw-bold">Atanan Kullanıcı</div>
+                                        @using (Html.BeginForm("TaskEditForm", "Manager", FormMethod.Post))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <div class="input-group input-group-sm">
+                                                @Html.HiddenFor(m => Model.id)
+                                                @Html.DropDownList("assignedUserId", null, htmlAttributes: new { @class = "form-select", required = "required" })
+                                                <button class="btn btn-primary" type="submit">Kaydet</button>
+                                            </div>
+                                        }
+                                    </div>
+                                </li>
+                            }
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 

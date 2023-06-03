@@ -10,5 +10,6 @@ namespace task_distribution_app.DataAccess.User
     public interface IUserDataAccess
     {
         UserVM Login(string username, string password);
+        List<UserVM> GetList(int role_id);
     }
 }
