@@ -19,13 +19,49 @@
                 </div>
                 <hr />
                 <div class="row">
-                    <div class="col-lg-4 col-12 mb-2">
-                        <h3>@Model.difficultylevelName</h3>
-                        <h4>@Model.title</h4>
-                        <p>@Model.description</p>
-                        <p>@Model.createdUserFullname / @Model.createdAt</p>
-                        <p>@Model.assignedUserFullname</p>
-                        <p>@(Model.isComplete == true ? "Tamamlandı" : "Tamamlanmadı")  | @Model.completeDate</p>
+                    <div class="col-md-6 col-12 mb-2">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-start p-2">
+                                <div>
+                                    <div class="fw-bold">Zorluk Seviyesi</div>
+                                    @Model.difficultylevelName
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start p-2">
+                                <div>
+                                    <div class="fw-bold">Başlık</div>
+                                    @Model.title
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start p-2">
+                                <div>
+                                    <div class="fw-bold">Açıklama</div>
+                                    @Model.description
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 col-12 mb-2">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-start p-2">
+                                <div>
+                                    <div class="fw-bold">Oluşturan Kullanıcı / Oluşturma Tarihi</div>
+                                    @Model.createdUserFullname / @(((DateTime)Model.createdAt).ToString("dd.MM.yyyy"))
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start p-2">
+                                <div>
+                                    <div class="fw-bold">Atanan Kullanıcı</div>
+                                    @Model.assignedUserFullname
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start p-2">
+                                <div>
+                                    <div class="fw-bold">Tamamlanma Durumu</div>
+                                    @(Model.isComplete == true ? "Tamamlandı" : "Tamamlanmadı")  @(Model.completeDate != null ? ((DateTime)Model.completeDate).ToString("dd.MM.yyyy") : "")
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 <div class="row">
