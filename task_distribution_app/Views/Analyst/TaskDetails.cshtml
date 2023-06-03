@@ -1,4 +1,4 @@
-﻿
+﻿@model task_distribution_app.Models.ViewModels.TaskVM
 @{
     ViewBag.Title = "Task Detayları";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,8 +12,8 @@
                     <div class="col-12 d-flex justify-content-between">
                         <h5>Task Detayları</h5>
                         <div>
-                            <a href="/analyst/task/1/edit" class="btn btn-warning btn-sm me-1"><i class="bi bi-pencil"></i></a>
-                            <a href="/analyst/task/1/delete" class="btn btn-danger btn-sm me-1"><i class="bi bi-trash3"></i></a>
+                            <a href="/analyst/task/@Model.id/edit" class="btn btn-warning btn-sm me-1"><i class="bi bi-pencil"></i></a>
+                            <a href="/analyst/task/@Model.id/delete" class="btn btn-danger btn-sm me-1"><i class="bi bi-trash3"></i></a>
                             <a href="/analyst" class="btn btn-dark btn-sm"><i class="bi bi-house"></i></a>
                         </div>
                     </div>
@@ -21,12 +21,12 @@
                 <hr />
                 <div class="row">
                     <div class="col-12 mb-2">
-                        <h3>Zorluk Seviyesi</h3>
-                        <h4>Task Başlığı</h4>
-                        <p>Task Açıklama</p>
-                        <p>Oluşturan Kullanıcı / Oluşturma Tarihi</p>
-                        <p>Atanan Developer</p>
-                        <p>Tamamlanmadı | Tamamlanma Tarihi</p>
+                        <h3>@Model.difficultylevelName</h3>
+                        <h4>@Model.title</h4>
+                        <p>@Model.description</p>
+                        <p>@Model.createdUserFullname / @Model.createdAt</p>
+                        <p>@Model.assignedUserFullname</p>
+                        <p>@(Model.isComplete == true ? "Tamamlandı" : "Tamamlanmadı")  | @Model.completeDate</p>
                     </div>
                 </div>
             </div>

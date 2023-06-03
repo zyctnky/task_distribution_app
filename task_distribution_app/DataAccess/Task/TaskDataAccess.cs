@@ -45,7 +45,7 @@ namespace task_distribution_app.DataAccess.Task
             }
         }
 
-        public TaskVM Insert(TaskVM taskVM)
+        public bool Insert(TaskVM taskVM)
         {
             using (_context = new TaskDistributionEntities())
             {
@@ -53,20 +53,24 @@ namespace task_distribution_app.DataAccess.Task
 
                 object[] parameters = { taskVM.difficultylevelId };
                 int availableDeveloperId = _context.Database.SqlQuery<int>("SELECT DBO.F_FIND_AVAILABLE_DEVELOPER({0}) AS USER_ID", parameters).FirstOrDefault();
-                TTASK task = _taskRepo.Insert(Map_TaskVMToTask(taskVM));
+                taskVM.assignedUserId = availableDeveloperId;
+                taskVM.assignedDate = new DateTime();
+                _taskRepo.Insert(Map_TaskVMToTask(taskVM));
+                _taskRepo.Save();
 
-                return Map_TaskToTaskVm(task);
+                return true;
             }
         }
 
-        public TaskVM Update(TaskVM taskVM)
+        public bool Update(TaskVM taskVM)
         {
             using (_context = new TaskDistributionEntities())
             {
                 _taskRepo = new GenericRepository<TTASK>(_context);
-                TTASK task = _taskRepo.Update(Map_TaskVMToTask(taskVM));
+                _taskRepo.Update(Map_TaskVMToTask(taskVM));
+                _taskRepo.Save();
 
-                return Map_TaskToTaskVm(task);
+                return true;
             }
         }
 
@@ -75,7 +79,8 @@ namespace task_distribution_app.DataAccess.Task
             using (_context = new TaskDistributionEntities())
             {
                 _taskRepo = new GenericRepository<TTASK>(_context);
-                _taskRepo.Delete(taskVM);
+                _taskRepo.Delete(taskVM.id);
+                _taskRepo.Save();
                 return true;
             }
         }
@@ -114,7 +119,7 @@ namespace task_distribution_app.DataAccess.Task
                 TASK_DIFFICULTYLEVEL_ID = taskVM.difficultylevelId,
                 TASK_IS_COMPLETE = false,
                 TASK_ASSIGNED_DATE = DateTime.Now,
-                TASK_ASSIGNED_USER_ID = 0,
+                TASK_ASSIGNED_USER_ID = taskVM.assignedUserId,
             };
         }
 

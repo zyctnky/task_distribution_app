@@ -18,6 +18,7 @@
                 <hr />
                 @using (Html.BeginForm("LoginForm", "Auth", FormMethod.Post))
                 {
+                    @Html.AntiForgeryToken()
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         @Html.TextBoxFor(m => Model.username, new { @class = "form-control", type = "text", placeholder = "Kullanıcı Adı", required = "required" })

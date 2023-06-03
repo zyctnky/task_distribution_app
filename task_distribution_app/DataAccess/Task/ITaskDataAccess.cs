@@ -10,8 +10,8 @@ namespace task_distribution_app.DataAccess.Task
     {
         List<TaskVM> GetList();
         TaskVM GetById(int task_id);
-        TaskVM Insert(TaskVM task);
-        TaskVM Update(TaskVM task);
+        bool Insert(TaskVM task);
+        bool Update(TaskVM task);
         bool Delete(TaskVM task);
         List<DifficultyLevelVM> GetDifficultyLevelList();
     }

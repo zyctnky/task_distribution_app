@@ -1,4 +1,4 @@
-﻿
+﻿@model task_distribution_app.Models.ViewModels.TaskVM
 @{
     ViewBag.Title = "Task Ekle";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -19,25 +19,25 @@
                 <hr />
                 <div class="row">
                     <div class="col-lg-4 col-12 mb-2">
-                        <div class="mb-3">
-                            <label for="title" class="form-label">Başlık</label>
-                            <input type="text" class="form-control" id="title">
-                        </div>
-                        <div class="mb-3">
-                            <label for="difficulty" class="form-label">Zorluk Seviyesi</label>
-                            <select class="form-select" id="difficulty" aria-label="Zorluk Seviyesi">
-                                <option selected>Zorluk Seviyesi Seç</option>
-                                <option value="3">LEVEL 1</option>
-                                <option value="3">LEVEL 2</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="description" class="form-label">Açıklama</label>
-                            <textarea class="form-control" id="description" rows="5"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <button type="submit" class="btn btn-primary w-100">Kaydet</button>
-                        </div>
+                        @using (Html.BeginForm("TaskCreateForm", "Analyst", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Başlık</label>
+                                @Html.TextBoxFor(m => Model.title, new { @class = "form-control", type = "text", required = "required" })
+                            </div>
+                            <div class="mb-3">
+                                <label for="difficulty" class="form-label">Zorluk Seviyesi</label>
+                                @Html.DropDownList("difficultylevelId", null, htmlAttributes: new { @class = "form-select", required = "required" })
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Açıklama</label>
+                                @Html.TextAreaFor(m => Model.description, new { @class = "form-control", @rows="5" })
+                            </div>
+                            <div class="mb-3">
+                                <button type="submit" class="btn btn-primary w-100">Kaydet</button>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
