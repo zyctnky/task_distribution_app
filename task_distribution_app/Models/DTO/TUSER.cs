@@ -25,7 +25,7 @@ namespace task_distribution_app.Models.DTO
         public string USER_USERNAME { get; set; }
         public string USER_FULLNAME { get; set; }
         public string USER_PASSWORD { get; set; }
-        public Nullable<int> USER_ROL_ID { get; set; }
+        public Nullable<int> USER_ROLE_ID { get; set; }
     
         public virtual TROLE TROLE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
