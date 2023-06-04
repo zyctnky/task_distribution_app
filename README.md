@@ -27,6 +27,7 @@ Aşağıda, analistin bir taskı kaydederken uygun developerı bulmak için kull
 3. Girilen zorluk seviyesinde task almamış bir developer yoksa:
    - Tasklar oluşturulma tarihine göre sıralanır.
    - Girilen zorluk seviyesindeki en eski atama bulunur ve bu atamadaki developera task atanır.
+   - Eğer en eski atamanın olduğu tarihte birden fazla developer var ise alfabetik olarak önce olan developera atama yapılır.
    - Bu aşama veritabanında yazılan Scalar-Valued fonksiyon kullanılarak gerçekleştirilmiştir.
 
 ## Projeye Ait Teknolojik Yapı
@@ -39,14 +40,21 @@ Aşağıda, analistin bir taskı kaydederken uygun developerı bulmak için kull
 - Dependency injection için Autofac kütüphanesi kullanılmıştır.
 - Ekran tasarımları için Bootstrap framework'ü kullanılmıştır.
 
+## Olası Geliştirmeler
+- Kullanıcı şifreleri veritabanına kaydedilirken şifrelenmelidir. (**ZORUNLU**)
+- Hata yakalama süreçleri iyileştirilmelidir. (**ZORUNLU**)
+- Loglama yapısı kurulmalıdır. (**ZORUNLU**)
+- Analist kullanıcıları için sadece kendi tanımladıkları taskları görebilmeleri sağlanabilir.
+- Uygun developerı bulma algoritması geliştirilebilir. (Developerları alfabetik sıralama ile belirleme aşamaları vb.)
+- Yönetici kullanıcısına kullanıcıları yönetme yetkisi verilebilir.
+- İşlem aşamalarında kullanıcıya daha iyi geri bildirimler gösterilebilir.
+
 ## Kurulum ve Çalıştırma
 
-Aşağıdaki adımları izleyerek projeyi yerel ortamınızda
-
- çalıştırabilirsiniz:
+Aşağıdaki adımları izleyerek projeyi yerel ortamınızda çalıştırabilirsiniz:
 
 1. Repository'i klonlayın veya ZIP olarak indirin.
-2. Proje klasöründe `DatabaseScript.sql` adlı dosyayı kullanarak MSSQL veritabanını oluşturun.
+2. `db` klasöründe `DatabaseScript.sql` adlı dosyayı kullanarak MSSQL veritabanını oluşturun.
 3. Visual Studio'da projeyi açın.
 4. Bağımlılıkları yüklemek için NuGet Package Manager Console'u açın ve `Update-Package` komutunu çalıştırın.
 5. `Web.config` dosyasında veritabanı bağlantı dizesini güncelleyin.
